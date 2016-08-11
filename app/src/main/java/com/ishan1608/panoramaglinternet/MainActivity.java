@@ -1,23 +1,41 @@
 package com.ishan1608.panoramaglinternet;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Toast;
 
-//public class MainActivity extends PLView {
-public class MainActivity extends AppCompatActivity {
+import com.panoramagl.PLView;
+import com.panoramagl.loaders.PLILoader;
+import com.panoramagl.loaders.PLJSONLoader;
+import com.panoramagl.loaders.PLLoaderListener;
+import com.panoramagl.transitions.PLTransitionBlend;
+
+public class MainActivity extends PLView {
 
     private static final String TAG = MainActivity.class.getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-//        loadSpherical2InternetJson();
     }
 
-    /*private void loadSpherical2InternetJson() {
+    @Override
+    protected View onContentViewCreated(View contentView) {
+        //Load layout
+        ViewGroup mainView = (ViewGroup)this.getLayoutInflater().inflate(R.layout.activity_main, null);
+        //Add 360 view
+        mainView.addView(contentView, 0);
+
+        // Loading panorama from internet
+        loadSpherical2InternetJson();
+
+        //Return root content view
+        return super.onContentViewCreated(mainView);
+    }
+
+    private void loadSpherical2InternetJson() {
         try {
             PLILoader loader = new PLJSONLoader("http://statichost.herokuapp.com/panoramagl/json_spherical2.json");
             loader.setListener(new PLLoaderListener() {
@@ -45,5 +63,5 @@ public class MainActivity extends AppCompatActivity {
         } catch (Throwable e) {
             Toast.makeText(getApplicationContext(), "Error: " + e, Toast.LENGTH_LONG).show();
         }
-    }*/
+    }
 }
