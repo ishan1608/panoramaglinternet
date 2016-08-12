@@ -4,4 +4,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.ishan1608.panoramaglinternet.MainActivity">
+    <ImageView
+        android:id="@+id/rotation_type_selector_image_view"
+        android:tag="0"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginBottom="10dp"
+        android:src="@drawable/compass"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true" />
 </RelativeLayout>

@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.panoramagl.PLView;
@@ -24,15 +25,42 @@ public class MainActivity extends PLView {
     @Override
     protected View onContentViewCreated(View contentView) {
         //Load layout
-        ViewGroup mainView = (ViewGroup)this.getLayoutInflater().inflate(R.layout.activity_main, null);
+        ViewGroup mainView = (ViewGroup) getLayoutInflater().inflate(R.layout.activity_main, null);
+
         //Add 360 view
         mainView.addView(contentView, 0);
+
+        // Rotation type selector
+        final ImageView rotationTypeSelector = (ImageView) mainView.findViewById(R.id.rotation_type_selector_image_view);
+        rotationTypeSelector.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                rotationTypeSelector(rotationTypeSelector);
+            }
+        });
 
         // Loading panorama from internet
         loadSpherical2InternetJson();
 
         //Return root content view
         return super.onContentViewCreated(mainView);
+    }
+
+    void rotationTypeSelector(ImageView imageView) {
+        int rotationType = Integer.parseInt((String) imageView.getTag());
+        switch (rotationType) {
+            default:
+            case 0:
+                startSensorialRotation();
+                imageView.setImageResource(R.drawable.arrows);
+                imageView.setTag(String.valueOf(1));
+                break;
+            case 1:
+                stopSensorialRotation();
+                imageView.setImageResource(R.drawable.compass);
+                imageView.setTag(String.valueOf(0));
+                break;
+        }
     }
 
     private void loadSpherical2InternetJson() {
