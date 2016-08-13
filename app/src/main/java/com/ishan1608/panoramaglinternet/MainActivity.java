@@ -65,7 +65,7 @@ public class MainActivity extends PLView {
 
     private void loadSpherical2InternetJson() {
         try {
-            PLILoader loader = new PLJSONLoader("http://statichost.herokuapp.com/panoramagl/json_spherical2.json");
+            PLILoader loader = new PLJSONLoader("https://d2d4mf3gi1s1pb.cloudfront.net/debug/media/debug/ecommerce/venuepanaromicjson/2016/08/13/casabella_0_spherical2.json");
             loader.setListener(new PLLoaderListener() {
                 @Override
                 public void didBegin(PLILoader pliLoader) {
